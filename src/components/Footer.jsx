@@ -1,75 +1,80 @@
-import { brand, nav, visit } from "../constants/brand";
+import { visit } from "../constants/brand";
+import { useLanguage } from "../context/LanguageContext";
 import Mark from "./design/Mark";
 
-const Footer = () => (
-  <footer id="visit" className="bg-noon-ink text-noon-cream pt-20 pb-12">
-    <div className="wrap">
-      <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
-        <div className="lg:col-span-5">
-          <a href="#" className="inline-flex items-center gap-3 mb-6 group">
-            <Mark className="text-noon-cream group-hover:text-noon-clay transition-colors" />
-            <span className="font-serif text-2xl">{brand.name}</span>
-          </a>
-          <p className="text-noon-sand/70 text-sm leading-relaxed max-w-sm">
-            A lunch studio in the harbor quarter. Slow food, small room, open door
-            — inspired by neighborhood hospitality, built as an original concept.
-          </p>
-        </div>
+const Footer = () => {
+  const { t, lang } = useLanguage();
 
-        <div className="lg:col-span-2">
-          <p className="label text-noon-clay mb-5">Explore</p>
-          <ul className="space-y-3">
-            {nav.map((item) => (
-              <li key={item.id}>
+  return (
+    <footer id="visit" className="bg-midi-ink text-midi-cream pt-20 pb-12">
+      <div className="wrap">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+          <div className="lg:col-span-5">
+            <a href="#" className="inline-flex items-center gap-3 mb-6 group">
+              <Mark className="text-midi-cream group-hover:text-midi-clay transition-colors" />
+              <span className="font-serif text-2xl font-wonky">{t.brand.name}</span>
+            </a>
+            <p className="text-midi-sand/70 text-sm leading-relaxed max-w-sm">
+              {t.footer.tagline}
+            </p>
+          </div>
+
+          <div className="lg:col-span-2">
+            <p className="label text-midi-clay mb-5">{t.footer.explore}</p>
+            <ul className="space-y-3">
+              {t.nav.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={item.href}
+                    className="text-sm text-midi-sand/80 hover:text-midi-cream transition-colors"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-5">
+            <p className="label text-midi-clay mb-5">{t.footer.visit}</p>
+            <p className="text-midi-cream mb-4">{visit.address}</p>
+            <ul className="space-y-2 text-sm mb-8">
+              <li>
                 <a
-                  href={item.href}
-                  className="text-sm text-noon-sand/80 hover:text-noon-cream transition-colors"
+                  href={`tel:${visit.phone.replace(/\s/g, "")}`}
+                  className="text-midi-sand/80 hover:text-midi-cream transition-colors"
                 >
-                  {item.label}
+                  {visit.phone}
                 </a>
               </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="lg:col-span-5">
-          <p className="label text-noon-clay mb-5">Visit us</p>
-          <p className="text-noon-cream mb-4">{visit.address}</p>
-          <ul className="space-y-2 text-sm mb-8">
-            <li>
-              <a
-                href={`tel:${visit.phone.replace(/\s/g, "")}`}
-                className="text-noon-sand/80 hover:text-noon-cream transition-colors"
-              >
-                {visit.phone}
-              </a>
-            </li>
-            <li>
-              <a
-                href={`mailto:${visit.email}`}
-                className="text-noon-sand/80 hover:text-noon-cream transition-colors"
-              >
-                {visit.email}
-              </a>
-            </li>
-          </ul>
-          <ul className="space-y-3 border-t border-white/10 pt-6">
-            {visit.hours.map((slot) => (
-              <li key={slot.days} className="flex justify-between text-sm gap-4">
-                <span className="text-noon-sand/60">{slot.days}</span>
-                <span className="font-medium">{slot.time}</span>
+              <li>
+                <a
+                  href={`mailto:${visit.email}`}
+                  className="text-midi-sand/80 hover:text-midi-cream transition-colors"
+                >
+                  {visit.email}
+                </a>
               </li>
-            ))}
-          </ul>
+            </ul>
+            <ul className="space-y-3 border-t border-white/10 pt-6">
+              {visit.hours.map((slot) => (
+                <li key={slot.days.en} className="flex justify-between text-sm gap-4">
+                  <span className="text-midi-sand/60">{slot.days[lang]}</span>
+                  <span className="font-medium">
+                    {typeof slot.time === "object" ? slot.time[lang] : slot.time}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-      </div>
 
-      <div className="flex flex-col sm:flex-row justify-between gap-4 pt-8 border-t border-white/10 text-xs text-noon-sand/50">
-        <p>© {new Date().getFullYear()} {brand.name}</p>
-        <p>Original concept · craft over template</p>
+        <p className="text-xs text-midi-sand/45 pt-8 border-t border-white/10">
+          © {new Date().getFullYear()} {t.brand.name}
+        </p>
       </div>
-    </div>
-  </footer>
-);
+    </footer>
+  );
+};
 
 export default Footer;

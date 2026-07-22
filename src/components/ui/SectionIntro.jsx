@@ -1,13 +1,13 @@
 const SectionIntro = ({ label, title, description, light = false, className = "" }) => (
   <div className={className}>
     {label && (
-      <p className={`label mb-4 ${light ? "text-noon-clay" : "text-noon-coral"}`}>
+      <p className={`label mb-4 ${light ? "text-midi-clay" : "text-midi-coral"}`}>
         {label}
       </p>
     )}
     <h2
-      className={`display text-3xl sm:text-4xl md:text-5xl text-balance max-w-2xl ${
-        light ? "text-noon-cream" : ""
+      className={`display text-display-md md:text-display-lg text-balance max-w-2xl font-wonky ${
+        light ? "text-midi-cream" : "text-midi-ink"
       }`}
     >
       {title}
@@ -15,7 +15,7 @@ const SectionIntro = ({ label, title, description, light = false, className = ""
     {description && (
       <p
         className={`mt-5 text-base md:text-lg leading-relaxed max-w-xl ${
-          light ? "text-noon-sand/75" : "text-noon-mist"
+          light ? "text-midi-sand/80" : "text-midi-500"
         }`}
       >
         {description}

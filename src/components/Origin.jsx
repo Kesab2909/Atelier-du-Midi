@@ -1,64 +1,67 @@
+import { useLanguage } from "../context/LanguageContext";
 import Reveal from "./ui/Reveal";
 import SectionIntro from "./ui/SectionIntro";
 
-const Origin = () => (
-  <section id="story" className="bg-noon-ink text-noon-cream py-24 md:py-32 relative overflow-hidden">
-    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(201,149,106,0.12)_0%,_transparent_50%)] pointer-events-none" />
+const Origin = () => {
+  const { t } = useLanguage();
 
-    <div className="wrap relative">
-      <div className="grid lg:grid-cols-12 gap-14 lg:gap-20">
-        <Reveal className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
-          <SectionIntro
-            light
-            label="Behind the pass"
-            title="I opened the room I wished already existed."
-            description="Noor — cook, host, and the person who remembers how you take your coffee."
-          />
-        </Reveal>
+  return (
+    <section id="story" className="bg-midi-ink text-midi-cream py-28 md:py-36 relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,_rgba(74,93,78,0.15)_0%,_transparent_55%)] pointer-events-none" />
 
-        <div className="lg:col-span-7 space-y-10">
-          <Reveal variant="reveal-scale" delay={100} className="grid grid-cols-12 gap-4">
-            <div className="col-span-7 rounded-[1.5rem] overflow-hidden aspect-[3/4] shadow-lift">
-              <img
-                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=85"
-                alt="Cooking at the pass"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                loading="lazy"
-              />
-            </div>
-            <div className="col-span-5 flex flex-col gap-4 pt-8">
-              <div className="rounded-[1.25rem] overflow-hidden aspect-square shadow-soft flex-1">
-                <img
-                  src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=85"
-                  alt="Plated dish"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+      <div className="wrap relative">
+        <div className="grid lg:grid-cols-12 gap-14 lg:gap-8">
+          <Reveal className="lg:col-span-5 lg:sticky lg:top-32 lg:self-start">
+            <SectionIntro
+              light
+              label={t.origin.label}
+              title={t.origin.title}
+              description={t.origin.subtitle}
+            />
+          </Reveal>
+
+          <div className="lg:col-span-7 lg:pl-8">
+            <Reveal variant="reveal-scale" delay={100} className="relative mb-12">
+              <div className="grid grid-cols-12 gap-3">
+                <div className="col-span-8 aspect-[4/5] overflow-hidden -rotate-1 shadow-lift photo-grade">
+                  <img
+                    src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=600&q=85&auto=format"
+                    alt="Cooking at the pass"
+                    className="w-full h-full object-cover photo-duotone hover:scale-105 transition-transform duration-700"
+                    loading="lazy"
+                    width={600}
+                    height={750}
+                  />
+                </div>
+                <div className="col-span-4 flex flex-col gap-3 pt-12">
+                  <div className="aspect-square overflow-hidden rotate-2 shadow-soft grayscale hover:grayscale-0 transition-all duration-700">
+                    <img
+                      src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=85&auto=format"
+                      alt="Plated dish"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      width={400}
+                      height={400}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="p-5 rounded-[1.25rem] bg-noon-navy/80 border border-white/10">
-                <p className="font-serif text-xl italic text-noon-clay leading-snug">
-                  &ldquo;Good lunch isn&apos;t a transaction. It&apos;s the hour where
-                  everything else can wait.&rdquo;
+              <blockquote className="absolute -bottom-8 -left-4 md:-left-8 max-w-xs p-5 bg-midi-rust/90 text-midi-cream rotate-[-2deg] shadow-lift">
+                <p className="font-serif text-lg italic leading-snug font-wonky">
+                  &ldquo;{t.origin.quote}&rdquo;
                 </p>
-              </div>
-            </div>
-          </Reveal>
+              </blockquote>
+            </Reveal>
 
-          <Reveal delay={200} className="max-w-xl space-y-5 text-noon-sand/80 text-base leading-[1.75]">
-            <p>
-              Before Atelier Noon I worked kitchens that prized throughput over memory.
-              I wanted the opposite: twelve seats, one rhythm, a door that stays open
-              to the neighborhood.
-            </p>
-            <p>
-              We cook in small runs, seat without performance, and treat every return
-              visit like continuity — not a loyalty program.
-            </p>
-          </Reveal>
+            <Reveal delay={220} className="max-w-lg space-y-5 text-midi-sand/85 text-base leading-[1.8] pt-8">
+              <p>{t.origin.p1}</p>
+              <p>{t.origin.p2}</p>
+            </Reveal>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Origin;

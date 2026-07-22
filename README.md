@@ -14,7 +14,7 @@
 
 ## 📋 Project Overview
 
-**Atelier du Midi** is a sophisticated web presence for an exclusive neighborhood lunch studio. The website showcases:
+**Atelier du Midi** is a sophisticated web presence for an exclusive neighborhood lunch studio. The website showcases : KSM
 
 - **Intimate Dining Experience** - Only 12 seats, one service at a time
 - **Quality-Focused Approach** - Real food, unhurried service, memorable interactions
